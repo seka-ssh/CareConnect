@@ -1,5 +1,7 @@
 # CareConnect
 
+![Model_Comparison](output_images/cclogo.png)
+
 **CareConnect** is an AI-powered, full-stack healthcare web application designed to simplify appointment booking, patient management, and doctor-patient interactions. Built with a modern tech stack, it supports secure authentication, real-time dashboards, AI assistants, all in one integrated system.
 
 ---
