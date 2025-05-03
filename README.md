@@ -2,6 +2,8 @@
 
 **CareConnect** is an AI-powered, full-stack healthcare web application designed to simplify appointment booking, patient management, and doctor-patient interactions. Built with a modern tech stack, it supports secure authentication, real-time dashboards, AI assistants, all in one integrated system.
 
+---
+
 ## 🚀 Features
 
 ### 🔹 Core Functionalities
@@ -39,6 +41,8 @@
 - Separate tokens for users and doctors
 - Middleware protects private routes
 
+---
+
 ## 🛠 Tech Stack
 
 ### Frontend
@@ -59,6 +63,8 @@
 ### AI Integration
 - LLaMA 3.3 70B (via ChatGroq + LangChain + Chroma), Google Generative AI
 - **Streaming Interface**: Streamlit
+
+---
 
 ## 🛠️ Setup Instructions
 
@@ -117,6 +123,7 @@ streamlit run app.py
 cd mental_chatbot
 streamlit run app.py
 ```
+---
 
 ## 📝 License
 This project is licensed under the MIT License.
