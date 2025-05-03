@@ -117,14 +117,14 @@ python -m venv .venv
 ### 5. Run Medical Chatbot (AskMed)
 ```bash
 cd med_chatbot
-.venv\Scripts\activate                                                                                                 
+.venv\Scripts\activate
 streamlit run app.py
 ```
 
 ### 6. Run Medical Analysis App (MedImageAI)
 ```bash
 cd medical_analysis
-.venv\Scripts\activate                                                                                                 
+.venv\Scripts\activate
 streamlit run app.py
 ```
 
