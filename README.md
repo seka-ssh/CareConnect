@@ -133,9 +133,10 @@ streamlit run app.py
 cd mental_chatbot
 streamlit run app.py
 ```
----
 
 The three links for the above three AI apps should be placed in respective pages of `frontend\src\`.
+
+---
 
 ## 📜 License
 This project is licensed under the MIT License.
