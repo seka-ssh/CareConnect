@@ -66,7 +66,7 @@
 
 ---
 
-## 🛠️ Setup Instructions
+## 🚀 Setup Instructions
 
 ### 1. Clone the repository
 ```bash
@@ -74,20 +74,25 @@ git clone https://github.com/addittidas/CareConnect.git
 cd CareConnect
 ```
 
-### 2. Run Backend
+### 2. Setup Backend
+Create a `.env` file in the `backend/` directory with the following:
+```bash
+MONGODB_URI=your_mongodb_uri
+CLOUDINARY_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_SECRET_KEY=your_api_secret
+JWT_SECRET=your_jwt_secret
+ADMIN_EMAIL=mail
+ADMIN_PASSWORD=pwd
+```
+Create a `mongodb.js` file in the `backend/config/` directory with the mongodb details.
+
+Now start the backend server:
 ```bash
 cd backend
 npm start server
 ```
 
-Create a `.env` file in the `server/` directory with the following:
-```bash
-MONGO_URL=your_mongo_uri
-JWT_SECRET=your_jwt_secret
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
-```
 ### 3. Run Frontend
 ```bash
 cd frontend
@@ -103,6 +108,11 @@ npm run dev
 ```
 
 Click on the link generated.
+
+**For the next AI section, create environments in each directory.**
+```bash
+python -m venv .venv 
+```
 
 ### 5. Run Medical Chatbot (AskMed)
 ```bash
@@ -124,6 +134,8 @@ cd mental_chatbot
 streamlit run app.py
 ```
 ---
+
+The three links for the above three AI apps should be placed in respective pages of `frontend\src\`.
 
 ## 📝 License
 This project is licensed under the MIT License.
