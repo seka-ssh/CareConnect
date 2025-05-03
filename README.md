@@ -1,4 +1,4 @@
-# CareConnect
+# CareConnect - Bridging You to Better Health
 
 ![Model_Comparison](output_images/cclogo.png)
 
