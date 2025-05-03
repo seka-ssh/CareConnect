@@ -1,0 +1,16 @@
+medical_analysis/google_api_key.py
+medical_analysis/.venv
+medical_analysis/__pycache__/
+
+med_chatbot/app.py
+med_chatbot/med_chat.ipynb
+med_chatbot/chroma_db_new
+med_chatbot/.venv
+
+mental_chatbot/app.py
+mental_chatbot/main.ipynb
+mental_chatbot/chroma_db_n
+mental_chatbot/chroma_db_new
+
+backend/config/mongodb.js
+backend/.env
