@@ -33,9 +33,9 @@
 - Manage platform-wide data
 
 ### 🤖 AI-Powered Tools (Medical AI Suite)
-- **AskMed**: AI Health Assistant for general health queries  
-- **MedImageAI**: Image-based medical analysis (e.g., skin conditions, X-rays)  
-- **MindEase**: Mental Health Conversational Chatbot 
+- **AskMed**: AI Health Assistant for general health queries using Gemini AI
+- **MedImageAI**: Image-based medical analysis using Gemini AI Vision
+- **MindEase**: Mental Health Conversational Chatbot using Gemini AI
 
 ### 🔐 Authentication
 
@@ -53,6 +53,7 @@
 - Tailwind CSS
 - Toastify for alerts
 - Context API for global state management
+- Google Generative AI SDK
 
 ### Backend
 - Node.js
@@ -63,8 +64,11 @@
 - Multer for file handling
 
 ### AI Integration
-- LLaMA 3.3 70B (via ChatGroq + LangChain + Chroma), Google Generative AI
-- **Streaming Interface**: Streamlit
+- **Google Gemini AI** (Gemini 1.5 Pro)
+- Direct integration in React components
+- Real-time chat interfaces
+- Medical image analysis
+- Mental health support
 
 ---
 
@@ -111,32 +115,26 @@ npm run dev
 
 Click on the link generated.
 
-**For the next AI section, create environments in each directory.**
+### 5. Configure AI Services
+
+**Important**: You need to set up your Gemini API key for the AI features to work.
+
+1. Get your API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+2. Create a `.env` file in the `frontend/` directory:
 ```bash
-python -m venv .venv 
+REACT_APP_GEMINI_API_KEY=your_gemini_api_key_here
 ```
 
-### 5. Run Medical Chatbot (AskMed)
-```bash
-cd med_chatbot
-.venv\Scripts\activate
-streamlit run app.py
-```
+For detailed AI setup instructions, see: `frontend/AI_SETUP.md`
 
-### 6. Run Medical Analysis App (MedImageAI)
-```bash
-cd medical_analysis
-.venv\Scripts\activate
-streamlit run app.py
-```
+### 6. Access AI Features
 
-### 7. Run Mental Chatbot (MindEase)
-```bash
-cd mental_chatbot
-streamlit run app.py
-```
+Once configured, you can access the AI features directly in your browser:
+- **AskMed**: Navigate to `/medicalai/ask-med` in your frontend app
+- **MedImageAI**: Navigate to `/medicalai/med-image-ai` in your frontend app  
+- **MindEase**: Navigate to `/medicalai/mind-ease` in your frontend app
 
-The three links for the above three AI apps should be placed in respective pages of `frontend\src\`.
+All AI features are now integrated directly into the React frontend - no separate Python servers needed!
 
 ---
 

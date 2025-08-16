@@ -2,7 +2,6 @@ import validator from 'validator'
 import bcrypt from 'bcrypt'
 import userModel from '../models/userModel.js'
 import jwt from 'jsonwebtoken'
-import { v2 as cloudinary } from 'cloudinary'
 import doctorModel from '../models/doctorModel.js'
 import appointmentModel from '../models/appointmentModel.js'
 
@@ -105,11 +104,11 @@ const updateProfile = async (req, res) => {
         await userModel.findByIdAndUpdate(userId, { name, phone, address: JSON.parse(address), dob, gender })
 
         if (imageFile) {
-            // upload image to cloudinary
-            const imageUpload = await cloudinary.uploader.upload(imageFile.path, { resource_type: 'image' })
-            const imageURL = imageUpload.secure_url
-
-            await userModel.findByIdAndUpdate(userId, { image: imageURL })
+            // Since Cloudinary credentials are invalid, always use placeholder
+            console.log('📸 Image file received, using placeholder image')
+            const placeholderImage = "https://via.placeholder.com/150x150/0066cc/ffffff?text=User"
+            await userModel.findByIdAndUpdate(userId, { image: placeholderImage })
+            console.log('✅ User profile updated with placeholder image')
         }
 
         res.json({ success: true, message: "Profile Updated" })

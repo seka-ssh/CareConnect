@@ -36,11 +36,11 @@ const Footer = () => {
                     <p className='text-xl font-medium mb-5'>GET IN TOUCH</p>
                     <ul className='flex flex-col gap-2 text-gray-600'>
                         <li>
-                            <a href="tel:09871146825" className="hover:text-primary">098711 46825</a>
+                            <a href="tel:0732754111" className="hover:text-primary">0732754111</a>
                         </li>
                         <li>
-                            <a href="mailto:careconnect@gmail.com" className="hover:text-primary">
-                                careconnect@gmail.com
+                            <a href="mailto:ngobokaben@gmail.com" className="hover:text-primary">
+                                ngobokaben@gmail.com
                             </a>
                         </li>
                     </ul>

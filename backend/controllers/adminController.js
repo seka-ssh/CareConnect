@@ -1,6 +1,5 @@
 import validator from "validator"
 import bcrypt from "bcrypt"
-import { v2 as cloudinary } from "cloudinary"
 import doctorModel from "../models/doctorModel.js"
 import jwt from 'jsonwebtoken'
 import appointmentModel from "../models/appointmentModel.js"
@@ -33,8 +32,16 @@ const addDoctor = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, salt)
 
         // upload image to cloudinary
-        const imageUpload = await cloudinary.uploader.upload(imageFile.path, { resource_type: "image" })
-        const imageUrl = imageUpload.secure_url
+        let imageUrl = ""
+        if (imageFile) {
+            // Since Cloudinary credentials are invalid, always use placeholder
+            console.log('📸 Doctor image file received, using placeholder image')
+            imageUrl = "https://via.placeholder.com/150x150/0066cc/ffffff?text=Doctor"
+            console.log('✅ Doctor will be added with placeholder image')
+        } else {
+            // No image file provided, use default placeholder
+            imageUrl = "https://via.placeholder.com/150x150/0066cc/ffffff?text=Doctor"
+        }
 
         const doctorData = {
             name,

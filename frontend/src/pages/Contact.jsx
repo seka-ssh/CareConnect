@@ -48,7 +48,7 @@ const Contact = () => {
   return (
     <div>
       <div className='text-center text-3xl pt-10 text-gray-500'>
-        <p>CONTACT <span className='text-gray-800 font-medium'>US</span></p>
+        <p>CONTACT <span className='text-gray-800 font-medium'>RW</span></p>
       </div>
 
       <p className='text-center pt-5 pb-5 text-gray-600'>Have questions or need assistance? We're here to help! Reach out to us via phone, email, or the contact form below.</p>
@@ -58,11 +58,11 @@ const Contact = () => {
 
         <div className='flex flex-col justify-center items-start gap-6'>
           <p className='font-semibold text-lg text-gray-600'>OUR OFFICE</p>
-          <p className='text-gray-500'>C-12, GV Pocket-V <br /> Plot-18, Rajpur Road, Dehradun</p>
-          <a href="https://www.google.com/maps/dir/?api=1&destination=Rajpur+Road+Dehradun" target="_blank" rel="noopener noreferrer" className='border border-black px-2 py-1 hover:bg-black hover:text-white transition-all duration-300 rounded-md'> See Direction</a>
+          <p className='text-gray-500'>KN, 3540<br /> Gatsata Health Center, 32PW+23X, Kigali</p>
+          <a href="https://www.google.com/maps/dir//32PW%2B23X,+Kigali/@-1.9148781,29.9628301,21214m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x19dca3d979ec0015:0x674e701f33f02d38!2m2!1d30.0452494!2d-1.915061?entry=ttu&g_ep=EgoyMDI1MDgxMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" className='border border-black px-2 py-1 hover:bg-black hover:text-white transition-all duration-300 rounded-md'> See Direction</a>
           <p className='text-gray-500'>
-            Tel: <a href="tel:09871146825" className="hover:text-primary">098711 46825</a> <br />
-            Email: <a href="mailto:careconnect@gmail.com" className="hover:text-primary">careconnect@gmail.com</a>
+            Tel: <a href="tel:09871146825" className="hover:text-primary">0732754111</a> <br />
+            Email: <a href="mailto:ngobokaben@gmail.com" className="hover:text-primary">ngobokaben@gmail.com</a>
           </p>
           <p className='text-gray-500'>Working hours: <br /> Monday - Saturday: 9:00 AM - 6:00 PM <br /> Sunday: Closed</p>
         </div>
