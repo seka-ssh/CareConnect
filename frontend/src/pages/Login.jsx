@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState, useRef } from 'react'
 import { AppContext } from '../context/AppContext'
 import axios from 'axios'
 import { toast } from 'react-toastify'
@@ -6,11 +6,10 @@ import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
   const { backendUrl, token, setToken } = useContext(AppContext)
-
   const navigate = useNavigate()
+  const initialTokenRef = useRef(token)
 
   const [state, setState] = useState('Sign Up')
-
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
@@ -19,12 +18,12 @@ const Login = () => {
     event.preventDefault()
 
     try {
-
       if (state === 'Sign Up') {
         const { data } = await axios.post(backendUrl + '/api/user/register', { name, password, email })
         if (data.success) {
           localStorage.setItem('token', data.token)
           setToken(data.token)
+          toast.success('Account created successfully!')
         } else {
           toast.error(data.message)
         }
@@ -33,21 +32,22 @@ const Login = () => {
         if (data.success) {
           localStorage.setItem('token', data.token)
           setToken(data.token)
+          toast.success('Logged in successfully!')
         } else {
           toast.error(data.message)
         }
       }
-
     } catch (error) {
       toast.error(error.message)
     }
   }
 
   useEffect(() => {
-    if (token) {
+    // Only redirect if token changed from initial state (meaning user just logged in/signed up)
+    if (token && token !== initialTokenRef.current) {
       navigate('/')
     }
-  }, [token])
+  }, [token, navigate])
 
   return (
     <form onSubmit={onSubmitHandler} className='min-h-[80vh] flex items-center'>

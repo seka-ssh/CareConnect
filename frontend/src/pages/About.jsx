@@ -6,7 +6,7 @@ import { CalendarCheck, CreditCard, BrainCircuit, Video } from "lucide-react";
 
 const About = () => {
   return (
-    <div>
+    <div >
       <div className='text-center text-3xl pt-10 text-gray-500'>
         <p>ABOUT <span className='text-gray-800 font-medium'>US</span></p>
       </div>

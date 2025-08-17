@@ -1,5 +1,5 @@
-import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 import Home from './pages/Home'
 import Doctors from './pages/Doctors'
 import Login from './pages/Login'
@@ -18,12 +18,23 @@ import MedicalAI from './pages/MedicalAI'
 import MedImageAI from './pages/MedImageAI'
 import AskMed from './pages/AskMed'
 import MindEase from './pages/MindEase'
+import { AppContext } from './context/AppContext'
 
 const App = () => {
+  const { token, setToken, userData } = useContext(AppContext)
+  const navigate = useNavigate()
+
+  const logout = () => {
+    localStorage.removeItem('token')
+    setToken(false)
+    toast.success('Logged out successfully!')
+    navigate('/login')
+  }
+
   return (
-    <div className='mx-4 sm:mx-[10%]'>
+    <div className='mx-4 sm:mx-[4%]'>
       <ToastContainer />
-      <Navbar />
+      <Navbar token={token} userData={userData} logout={logout} />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/doctors' element={<Doctors />} />

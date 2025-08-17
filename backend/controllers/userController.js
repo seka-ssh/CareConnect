@@ -78,9 +78,12 @@ const loginUser = async (req, res) => {
 // API to get user profile data
 const getProfile = async (req, res) => {
     try {
-
         const { userId } = req.body
         const userData = await userModel.findById(userId).select('-password')
+
+        if (!userData) {
+            return res.json({ success: false, message: "User not found" })
+        }
 
         res.json({ success: true, userData })
 
@@ -93,28 +96,50 @@ const getProfile = async (req, res) => {
 // API to update user profile
 const updateProfile = async (req, res) => {
     try {
-
+        console.log('🔄 Profile update request received')
+        console.log('📋 Request body:', req.body)
+        
         const { userId, name, phone, address, dob, gender } = req.body
-        const imageFile = req.file
 
         if (!name || !phone || !address || !dob || !gender) {
+            console.log('❌ Missing data:', { name, phone, address, dob, gender })
             return res.json({ success: false, message: "Data Missing" })
         }
 
-        await userModel.findByIdAndUpdate(userId, { name, phone, address: JSON.parse(address), dob, gender })
-
-        if (imageFile) {
-            // Since Cloudinary credentials are invalid, always use placeholder
-            console.log('📸 Image file received, using placeholder image')
-            const placeholderImage = "https://via.placeholder.com/150x150/0066cc/ffffff?text=User"
-            await userModel.findByIdAndUpdate(userId, { image: placeholderImage })
-            console.log('✅ User profile updated with placeholder image')
+        // Prepare update data
+        const updateData = { 
+            name, 
+            phone, 
+            dob, 
+            gender 
         }
 
-        res.json({ success: true, message: "Profile Updated" })
+        // Handle address field - it might be a string or JSON
+        try {
+            if (typeof address === 'string') {
+                updateData.address = JSON.parse(address)
+                console.log('✅ Address parsed successfully:', updateData.address)
+            } else {
+                updateData.address = address
+                console.log('✅ Address used as is:', updateData.address)
+            }
+        } catch (error) {
+            // If JSON parsing fails, use address as string
+            updateData.address = address
+            console.log('⚠️ Address parsing failed, using as string:', updateData.address)
+        }
+
+        console.log('📝 Updating user data:', updateData)
+
+        // Update user data
+        const updatedUser = await userModel.findByIdAndUpdate(userId, updateData, { new: true })
+        console.log('✅ User data updated successfully')
+
+        console.log('✅ Profile update completed successfully')
+        res.json({ success: true, message: "Profile Updated Successfully" })
 
     } catch (error) {
-        console.log(error)
+        console.log('❌ Profile update error:', error)
         res.json({ success: false, message: error.message })
     }
 }

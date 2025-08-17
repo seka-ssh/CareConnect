@@ -4,6 +4,7 @@ import group_profiles from './group_profiles.png'
 import profile_pic from './profile.jpeg'
 import contact_image from './contact_image.png'
 import about_image from './about_image.png'
+import smile_doc from './profile-doc.png'
 import logo from './cclogo.png'
 import logo2 from './cclogo2.png'
 import dropdown_icon from './dropdown_icon.svg'
@@ -53,7 +54,8 @@ export const assets = {
     menu_icon,
     cross_icon,
     dropdown_icon,
-    upload_icon
+    upload_icon,
+    smile_doc
 }
 
 export const specialityData = [

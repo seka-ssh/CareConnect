@@ -1,80 +1,123 @@
-import React, { useContext, useState } from 'react'
-import { assets } from '../assets/assets'
-import { NavLink, useNavigate } from 'react-router-dom'
-import { AppContext } from '../context/AppContext';
-const Navbar = () => {
+import React, { useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { assets } from '../assets/assets';
 
-    const navigate = useNavigate();
+const Navbar = ({ token, userData, logout }) => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
-    const { token, setToken, userData } = useContext(AppContext)
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(prev => !prev);
+  };
 
-    const [showMenu, setShowMenu] = useState(false)
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
 
-    const logout = () => {
-        setToken(false)
-        localStorage.removeItem('token')
-    }
+  return (
+    <>
+      {/* Mobile Menu Backdrop */}
+      {isMobileMenuOpen && (
+        <div
+          className="md:hidden fixed inset-0 bg-black/20 backdrop-blur-sm z-30"
+          onClick={closeMobileMenu}
+        />
+      )}
 
-    return (
-        <div className='flex items-center justify-between text-sm py-4 mb-5 border-b border-b-gray-400'>
-            <img onClick={() => navigate('/')} className='w-44 cursor-pointer' src={assets.logo} alt="" />
-            <ul className='hidden md:flex items-start gap-5 font-medium'>
-                <NavLink to='/'>
-                    <li className='py-1'>HOME</li>
-                    <hr className='border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden' />
-                </NavLink>
-                <NavLink to='/doctors'>
-                    <li className='py-1'>ALL DOCTORS</li>
-                    <hr className='border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden' />
-                </NavLink>
-                <NavLink to='/medicalai'>
-                    <li className='py-1'>MEDICAL AI</li>
-                    <hr className='border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden' />
-                </NavLink>
-                <NavLink to='/about'>
-                    <li className='py-1'>ABOUT</li>
-                    <hr className='border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden' />
-                </NavLink>
-                <NavLink to='/contact'>
-                    <li className='py-1'>CONTACT US</li>
-                    <hr className='border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden' />
-                </NavLink>
-            </ul>
-            <div className='flex items-center gap-4'>
-                {
-                    token && userData
-                        ? <div className='flex items-center gap-2 cursor-pointer group relative'>
-                            <img className='w-8 rounded-full' src={userData.image} alt="" />
-                            <img className='w-2.5' src={assets.dropdown_icon} alt="" />
-                            <div className='absolute top-0 right-0 pt-14 text-base font-medium text-gray-600 z-20 hidden group-hover:block'>
-                                <div className='min-w-48 bg-stone-100 rounded flex flex-col gap-4 p-4'>
-                                    <p onClick={() => navigate('/my-profile')} className='hover:text-black cursor-pointer'>My Profile</p>
-                                    <p onClick={() => navigate('/my-appointments')} className='hover:text-black cursor-pointer'>My Appointments</p>
-                                    <p onClick={logout} className='hover:text-black cursor-pointer'>Logout</p>
-                                </div>
-                            </div>
-                        </div>
-                        : <button onClick={() => navigate('/login')} className='bg-primary text-white px-8 py-3 rounded-full font-light hidden md:block'>Create account</button>
-                }
+      <header className="sticky top-0 z-50 flex items-center justify-between px-6 py-3 md:py-4 shadow max-w-5xl rounded-full mx-auto w-full bg-white/90 backdrop-blur-sm mt-4">
+        {/* Logo */}
+        <NavLink to="/">
+          <img
+            src={assets.logo || "https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/dummyLogo/prebuiltuiDummyLogo.svg"}
+            alt="Logo"
+            className="w-36"
+          />
+        </NavLink>
 
-                <img onClick={() => setShowMenu(true)} className='w-6 md:hidden cursor-pointer' src={assets.menu_icon} alt="" />
-                {/*mobile menu*/}
-                <div className={` ${showMenu ? 'fixed w-full' : 'h-0 w-0'} md:hidden right-0 top-0 bottom-0 z-20 overflow-hidden bg-white transition-all`}>
-                    <div className='flex items-center justify-between px-5 py-6'>
-                        <img className='w-36' src={assets.logo} alt="" />
-                        <img className='w-7 cursor-pointer' onClick={() => setShowMenu(false)} src={assets.cross_icon} alt="" />
-                    </div>
-                    <ul className='flex flex-col items-center gap-2 mt-5 px-5 text-lg font-medium'>
-                        <NavLink onClick={() => setShowMenu(false)} to='/'><p className='px-4 py-2 rounded inline-block'>Home</p></NavLink>
-                        <NavLink onClick={() => setShowMenu(false)} to='/doctors'><p className='px-4 py-2 rounded inline-block'>All Doctors</p></NavLink>
-                        <NavLink onClick={() => setShowMenu(false)} to='/medicalai'><p className='px-4 py-2 rounded inline-block'>Medical AI</p></NavLink>
-                        <NavLink onClick={() => setShowMenu(false)} to='/about'><p className='px-4 py-2 rounded inline-block'>About Us</p></NavLink>
-                        <NavLink onClick={() => setShowMenu(false)} to='/contact'><p className='px-4 py-2 rounded inline-block'>Contact</p></NavLink>
-                    </ul>
-                </div>
+        {/* Desktop Nav Links */}
+        <nav className="hidden md:flex md:flex-row md:items-center md:gap-8 md:text-sm md:text-gray-800 md:font-normal">
+          <NavLink to="/medicalai" className="hover:text-[#17A4A5] transition-colors">Medical AI</NavLink>
+          <NavLink to="/doctors" className="hover:text-[#17A4A5] transition-colors">Doctors</NavLink>
+          <NavLink to="/contact" className="hover:text-[#17A4A5] transition-colors">Contact Us</NavLink>
+          <NavLink to="/about" className="hover:text-[#17A4A5] transition-colors">About Us</NavLink>
+        </nav>
+
+        {/* Right Side */}
+        <div className="flex items-center gap-4">
+          {/* Auth Buttons */}
+          {token && userData ? (
+            <div className="relative group">
+              <div className="flex items-center gap-2 cursor-pointer">
+                <img 
+                  className="w-8 h-8 rounded-full object-cover" 
+                  src={assets.profile_pic} 
+                  alt="User" 
+                />
+                <img className="w-2.5" src={assets.dropdown_icon} alt="Dropdown" />
+              </div>
+              <div className="absolute top-10 right-0 hidden group-hover:flex flex-col min-w-[180px] bg-stone-100 rounded p-4 gap-2 text-gray-700 shadow-lg">
+                <p onClick={() => navigate('/my-profile')} className="hover:text-black cursor-pointer">My Profile</p>
+                <p onClick={() => navigate('/my-appointments')} className="hover:text-black cursor-pointer">My Appointments</p>
+                <p onClick={logout} className="hover:text-black cursor-pointer">Logout</p>
+              </div>
             </div>
-        </div>
-    )
-}
+          ) : (
+            <button
+              onClick={() => navigate('/login')}
+              className="bg-primary text-white px-8 py-3 rounded-full font-light hidden md:block"
+            >
+              Create Account
+            </button>
+          )}
 
-export default Navbar
+          {/* Mobile Menu Toggle */}
+          <button
+            className="md:hidden text-gray-800 hover:text-[#17A4A5]"
+            onClick={toggleMobileMenu}
+          >
+            {isMobileMenuOpen ? (
+              <span className="text-2xl">✕</span>
+            ) : (
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        <nav
+          onClick={(e) => e.stopPropagation()}
+          className={`md:hidden fixed top-0 left-0 h-screen w-full bg-white/95 backdrop-blur-md flex flex-col justify-center items-center gap-6 text-lg transition-transform duration-300 z-40 ${
+            isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+          }`}
+        >
+          <NavLink onClick={closeMobileMenu} to="/medicalai" className="hover:text-[#17A4A5]">Medical AI</NavLink>
+          <NavLink onClick={closeMobileMenu} to="/doctors" className="hover:text-[#17A4A5]">Doctors</NavLink>
+          <NavLink onClick={closeMobileMenu} to="/contact" className="hover:text-[#17A4A5]">Contact Us</NavLink>
+          <NavLink onClick={closeMobileMenu} to="/about" className="hover:text-[#17A4A5]">About Us</NavLink>
+          
+          {token && userData ? (
+            <>
+              <NavLink onClick={closeMobileMenu} to="/my-profile" className="hover:text-[#17A4A5]">My Profile</NavLink>
+              <NavLink onClick={closeMobileMenu} to="/my-appointments" className="hover:text-[#17A4A5]">My Appointments</NavLink>
+              <button onClick={() => { logout(); closeMobileMenu(); }} className="bg-red-500 text-white px-12 py-4 rounded-full hover:bg-red-600 transition">Logout</button>
+            </>
+          ) : (
+            <NavLink onClick={closeMobileMenu} to="/login" className="bg-[#17A4A5] text-white px-12 py-4 rounded-full hover:bg-[#149494] transition">Sign Up</NavLink>
+          )}
+        </nav>
+      </header>
+    </>
+  );
+};
+
+export default Navbar;
