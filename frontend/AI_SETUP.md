@@ -20,7 +20,7 @@ Create a `.env` file in the `frontend/` directory:
 REACT_APP_GEMINI_API_KEY=your_actual_api_key_here
 
 # Backend API URL (optional)
-REACT_APP_API_URL=http://localhost:4000/api
+REACT_APP_API_URL=http://localhost:5666/api
 ```
 
 ### 3. Install Dependencies

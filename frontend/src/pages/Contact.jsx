@@ -62,7 +62,7 @@ const Contact = () => {
           <a href="https://www.google.com/maps/dir//32PW%2B23X,+Kigali/@-1.9148781,29.9628301,21214m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x19dca3d979ec0015:0x674e701f33f02d38!2m2!1d30.0452494!2d-1.915061?entry=ttu&g_ep=EgoyMDI1MDgxMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" className='border border-black px-2 py-1 hover:bg-black hover:text-white transition-all duration-300 rounded-md'> See Direction</a>
           <p className='text-gray-500'>
             Tel: <a href="tel:09871146825" className="hover:text-primary">0732754111</a> <br />
-            Email: <a href="mailto:ngobokaben@gmail.com" className="hover:text-primary">ngobokaben@gmail.com</a>
+            Email: <a href="mailto:sekashalom74@gmail.com" className="hover:text-primary">sekashalom74@gmail.com</a>
           </p>
           <p className='text-gray-500'>Working hours: <br /> Monday - Saturday: 9:00 AM - 6:00 PM <br /> Sunday: Closed</p>
         </div>

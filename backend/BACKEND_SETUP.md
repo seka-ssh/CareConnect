@@ -27,7 +27,7 @@ ADMIN_EMAIL=admin@careconnect.com
 ADMIN_PASSWORD=admin123
 
 # Server Configuration
-PORT=4000
+PORT=5666
 ```
 
 ## 🔧 How to Get Cloudinary Credentials
@@ -58,7 +58,7 @@ PORT=4000
 
 Your server should start without errors and show:
 - "MongoDB connected Successfully"
-- "Server Started on port 4000"
+- "Server Started on port 5666"
 
 ## 🛠️ Troubleshooting
 

@@ -1,12 +1,11 @@
 // ai.js
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-// AI Configuration
+// AI Configuration (now uses ENV KEY)
 export const AI_CONFIG = {
-    // ⚠️ Better to load this from env: process.env.REACT_APP_GEMINI_API_KEY
-    GEMINI_API_KEY: "AIzaSyDoaxgQyqSJ1bGI2EcMwUuRE1P3DGUnZVk",
+    GEMINI_API_KEY: import.meta.env.VITE_GEMINI_API_KEY, // <-- secure & correct
 
-    MODEL_NAME: "gemini-1.5-flash",
+    MODEL_NAME: "gemini-2.0-flash",  // Fully valid model
 
     GENERATION_CONFIG: {
         temperature: 0.7,
@@ -16,28 +15,38 @@ export const AI_CONFIG = {
     },
 
     SAFETY_SETTINGS: [
-        { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
-        { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
-        { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
-        { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
+        {
+            category: "HARM_CATEGORY_HARASSMENT",
+            threshold: "BLOCK_MEDIUM_AND_ABOVE",
+        },
+        {
+            category: "HARM_CATEGORY_HATE_SPEECH",
+            threshold: "BLOCK_MEDIUM_AND_ABOVE",
+        },
+        {
+            category: "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+            threshold: "BLOCK_MEDIUM_AND_ABOVE",
+        },
+        {
+            category: "HARM_CATEGORY_DANGEROUS_CONTENT",
+            threshold: "BLOCK_MEDIUM_AND_ABOVE",
+        },
     ],
 };
 
 // Validate API key
 export const validateApiKey = () => {
     const apiKey = AI_CONFIG.GEMINI_API_KEY;
-    if (!apiKey || apiKey === "YOUR_GEMINI_API_KEY_HERE") {
-        console.error("⚠️ Gemini API key not configured. Please add your API key to the environment variables.");
+    if (!apiKey) {
+        console.error("⚠️ Gemini API key missing. Please set VITE_GEMINI_API_KEY in your .env file.");
         return false;
     }
     return true;
 };
 
-// Get configured model
+// Initialize model
 export const getConfiguredModel = () => {
-    if (!validateApiKey()) {
-        throw new Error("Gemini API key not configured");
-    }
+    if (!validateApiKey()) throw new Error("Gemini API key not configured");
 
     const genAI = new GoogleGenerativeAI(AI_CONFIG.GEMINI_API_KEY);
 

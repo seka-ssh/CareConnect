@@ -39,8 +39,8 @@ const Footer = () => {
                             <a href="tel:0732754111" className="hover:text-primary">0732754111</a>
                         </li>
                         <li>
-                            <a href="mailto:ngobokaben@gmail.com" className="hover:text-primary">
-                                ngobokaben@gmail.com
+                            <a href="mailto:sekashalom74@gmail.com" className="hover:text-primary">
+                                sekashalom74@gmail.com
                             </a>
                         </li>
                     </ul>
